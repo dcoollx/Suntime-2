@@ -1,5 +1,6 @@
 import React from 'react';
 import Navigator from 'react.cordova-navigation_controller';
+import Api from './helpers/api';
 // Learn more about the Navigator: https://www.npmjs.com/package/react.cordova-navigation_controller
 
 import './app.css';
@@ -15,6 +16,12 @@ export default class App extends React.Component {
     this.state = {
       nowPage: ""
     }
+  }
+
+  componentDidMount(){
+    Api.doFetch().then(res=>{
+      this.setState({weather:res});
+    });
   }
 
   menuClick(e, goToPage) {
